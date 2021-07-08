@@ -32,23 +32,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double width;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SafeArea(
         child: Container(
-          height: height,
-          width: width,
           color: AppColor.white,
           child: Stack(
             children: [
               Container(
                 height: 200,
-                width: width,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(30),
@@ -57,9 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: AppColor.purple,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -84,13 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              Positioned(
-                top: 90,
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
                 child: Container(
                   margin: EdgeInsets.all(20),
                   padding: EdgeInsets.all(20),
                   height: 150,
-                  width: 330,
+                  width: double.infinity,
                   decoration: BoxDecoration(
                       color: AppColor.white,
                       borderRadius: BorderRadius.circular(20),
@@ -146,25 +138,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
-              Positioned(
-                top: 80,
-                left: width * 0.4,
-                child: Container(
-                  width: 70,
-                  height: 70,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('images/pic.jpg'),
+              Column(
+                children: [
+                  SizedBox(height: 75),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 70,
+                        height: 70,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('images/pic.jpg'),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                ],
               ),
-              Positioned(
-                child: Row(
-                  children: [
-                    infocard('542', 'Likes', Colors.purple),
-                    infocard('670', 'Rides', Colors.blue),
-                    infocard('542', 'Likes', Colors.orange),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  infocard('542', 'Likes', Colors.purple),
+                  infocard('670', 'Rides', Colors.blue),
+                  infocard('542', 'Likes', Colors.orange),
+                ],
               ),
             ],
           ),
@@ -185,11 +182,11 @@ class _MyHomePageState extends State<MyHomePage> {
             BoxShadow(blurRadius: 10, spreadRadius: 1, color: Color(0x33000000))
           ],
         ),
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Positioned(
-              left: 30,
-              top: 10,
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
               child: Text(
                 title,
                 style: TextStyle(
@@ -198,23 +195,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            Positioned(
-              right: 30,
-              top: 50,
-              child: Text(
-                subTitle,
-                style: TextStyle(
-                  fontSize: 15,
-                ),
+            Text(
+              subTitle,
+              style: TextStyle(
+                fontSize: 15,
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                width: width,
-                height: 10,
-                color: color,
-              ),
+            Container(
+              // width: width,
+              height: 10,
+              color: color,
             ),
           ],
         ),
